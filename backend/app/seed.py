@@ -128,8 +128,14 @@ def _alpha_trail_scans(db: Session, alpha: Tenant, case: Case | None) -> None:
     db.flush()
 
 
+ID_STARTS = {"tenants": 1001, "users": 101}
+
+
 def reset(db: Session) -> None:
     db.execute(text("TRUNCATE scans, cases, cameras, users, tenants RESTART IDENTITY CASCADE"))
+    # Also covers databases created before the models declared these start values.
+    for table, start in ID_STARTS.items():
+        db.execute(text(f"SELECT setval(pg_get_serial_sequence('{table}', 'id'), {start}, false)"))
     db.commit()
 
 

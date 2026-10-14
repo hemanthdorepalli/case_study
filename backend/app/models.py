@@ -7,6 +7,7 @@ from sqlalchemy import (
     DateTime,
     Double,
     ForeignKey,
+    Identity,
     Index,
     String,
     func,
@@ -24,7 +25,8 @@ USER_ROLES = ("admin", "staff")
 class Tenant(Base):
     __tablename__ = "tenants"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    # Readable, distinct id ranges: tenants 1001+, users 101+ (see seed.ID_STARTS).
+    id: Mapped[int] = mapped_column(Identity(start=1001), primary_key=True)
     name: Mapped[str] = mapped_column(String(200), unique=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
@@ -40,7 +42,7 @@ class User(Base):
         ),
     )
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    id: Mapped[int] = mapped_column(Identity(start=101), primary_key=True)
     tenant_id: Mapped[int | None] = mapped_column(ForeignKey("tenants.id", ondelete="RESTRICT"), index=True)
     username: Mapped[str] = mapped_column(String(100), unique=True)
     password_hash: Mapped[str] = mapped_column(String(255))
