@@ -1,0 +1,248 @@
+/* Basic, dependency-free styling: header bar, cards, forms, tables, badges. */
+:root {
+  --bg: #f4f6f9;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --header: #111827;
+  --error-bg: #fef2f2;
+  --error: #b91c1c;
+  --success-bg: #f0fdf4;
+  --success: #15803d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--bg);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+h2 {
+  margin: 0 0 16px;
+  font-size: 20px;
+}
+h3 {
+  margin: 24px 0 10px;
+  font-size: 16px;
+}
+
+/* ---------- header ---------- */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 24px;
+  height: 56px;
+  background: var(--header);
+  color: #fff;
+}
+.header strong {
+  font-size: 16px;
+  letter-spacing: 0.3px;
+}
+.header nav {
+  display: flex;
+  gap: 4px;
+}
+.header nav a {
+  color: #d1d5db;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+.header nav a:hover {
+  background: #1f2937;
+  text-decoration: none;
+}
+.header nav a.active {
+  color: #fff;
+  background: #374151;
+}
+.header .who {
+  margin-left: auto;
+  color: #d1d5db;
+}
+.header button {
+  background: transparent;
+  border: 1px solid #4b5563;
+  color: #fff;
+}
+.header button:hover {
+  background: #374151;
+}
+
+/* ---------- layout ---------- */
+main {
+  max-width: 1100px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+main > section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 24px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+/* ---------- form controls ---------- */
+button {
+  font: inherit;
+  padding: 7px 14px;
+  border: 1px solid var(--primary);
+  border-radius: 6px;
+  background: var(--primary);
+  color: #fff;
+  cursor: pointer;
+}
+button:hover {
+  background: var(--primary-hover);
+}
+button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+input,
+select {
+  font: inherit;
+  padding: 7px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #fff;
+  color: var(--text);
+}
+input:focus,
+select:focus {
+  outline: 2px solid #bfdbfe;
+  border-color: var(--primary);
+}
+label {
+  color: var(--muted);
+}
+.inline-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+/* ---------- tables ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+th,
+td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+th {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--muted);
+  background: #f9fafb;
+}
+tr.clickable {
+  cursor: pointer;
+}
+tr.clickable:hover {
+  background: #eff6ff;
+}
+
+/* ---------- messages & badges ---------- */
+.error,
+.success {
+  padding: 10px 12px;
+  border-radius: 6px;
+}
+.error {
+  color: var(--error);
+  background: var(--error-bg);
+}
+.success {
+  color: var(--success);
+  background: var(--success-bg);
+}
+.hint {
+  color: var(--muted);
+}
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.badge.own,
+.badge.active {
+  color: #166534;
+  background: #dcfce7;
+}
+.badge.network,
+.badge.pending_claim {
+  color: #92400e;
+  background: #fef3c7;
+}
+.badge.closed {
+  color: #374151;
+  background: #e5e7eb;
+}
+
+/* ---------- case facts ---------- */
+.facts {
+  display: grid;
+  grid-template-columns: max-content auto;
+  gap: 6px 20px;
+  margin: 0 0 8px;
+}
+.facts dt {
+  color: var(--muted);
+}
+.facts dd {
+  margin: 0;
+}
+
+/* ---------- login ---------- */
+.login {
+  max-width: 360px;
+  margin: 80px auto;
+  padding: 28px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+.login h1 {
+  margin: 0 0 20px;
+  font-size: 20px;
+}
+.login form {
+  display: grid;
+  gap: 14px;
+}
+.login label {
+  display: grid;
+  gap: 6px;
+}

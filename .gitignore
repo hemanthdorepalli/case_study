@@ -1,0 +1,21 @@
+# Single ignore file for the whole repo (backend + frontend).
+
+# Secrets: real env files stay local; the .env.example files are committed.
+.env
+.env.local
+
+# Python (backend)
+venv/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Node (frontend)
+node_modules/
+dist/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
